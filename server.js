@@ -7,12 +7,13 @@ var app = express();
 
 //get request
 app.get('/', function (req, res) {
-
 //request ip address
 var ip = req.connection.remoteAddress
 //request language
 var language = req.headers['accept-language']
-  res.send({ipaddress: ip, language: language})
+//user-agent
+var agent = req.headers['user-agent']
+  res.send({ipaddress: ip, language: language, software: agent})
 })
 
 // Start server up!
