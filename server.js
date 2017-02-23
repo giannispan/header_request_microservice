@@ -5,11 +5,15 @@ var express = require('express')
 // Build the app
 var app = express();
 
-// Add some middleware
-app.use(function(request, response) {
-  response.writeHead(200, { "Content-Type": "text/plain" });
-  response.end("Hello World!\n");
-});
+//get request
+app.get('/', function (req, res) {
+
+//request ip address
+var ip = req.connection.remoteAddress
+//request language
+var language = req.headers['accept-language']
+  res.send({ipaddress: ip, language: language})
+})
 
 // Start server up!
 http.createServer(app).listen(8080);
